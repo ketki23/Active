@@ -10,6 +10,8 @@ private $password = "z4QhaWbRd";
 private $db;// database handler
 private $error;// for errors
 
+private static $instance;// to maintain single instance and eliminate mutilple connections open
+
 public function __construct()
 {
 $connect = $this->servername;
@@ -24,4 +26,22 @@ catch(PDOException $e)
 $this->error= $e->getMessage();
 }
 }
+
+static function getconnected()
+{
+    if(!self::$instance)
+        {
+            self::$instance = new self();
+        }
+        return self::$instance;
+}
+}
+
+class collection 
+{
+    static public function create()
+    {
+      $model = new static::$modelName;
+      return $model;
+    }
 }
