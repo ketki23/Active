@@ -73,3 +73,8 @@ class collection
         return $recordsSet[0];
     }
 }
+
+class accounts extends collection
+{
+    protected static $modelName = 'account';
+}
