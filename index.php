@@ -180,22 +180,45 @@ class todo extends model
     static $update ='1';
 }
 
-    public function __construct()
-    {
-        $this->tableName = 'todos';
-    
-    }
-
+class HtmlTable
+{
+    echo '<table>'
+    echo "<table border='3'>";
+    foreach($result as $column)
+            {
+                echo '<tr>';
+                        foreach($column as $row)
+                        {
+                            echo '<td>';
+                            echo $row;
+                            echo '</td>';
+                        }
+                echo '</tr>';
+            }
+    echo '</table>';
 }
 
+echo 'Select all records from the table Accounts';// printing all the records for Accounts
+$records = accounts::create();
 $result = accounts::findAll(); // to put in index page for accounts 
-print_r($result);
+table::createTable($result);
 
+echo '<br><br>';
+
+echo 'Select all records from the table todos';// printing all the records for Accounts
+$records = accounts::create();
 $result = todos::findAll(); // to put in index page for todos
-print_r($result);
+table::createTable($result);
 
-$result = accounts::findOne(1);// to get one result and is used for showing one result or updating one result for accounts
-print_r($result);
+echo '<br><br>';
 
+echo '<h2>Select record from table Todos where ID=3 <h2>';
+$result = accounts::findOne(3);// to get one result and is used for showing one result or updating one result for accounts
+table::createTable($result);
+
+
+echo '<br><br>';
+
+echo '<h2>Select record from table Todos where ID=1 <h2>';
 $result = todos::findOne(1);// to get one result and is used for showing one result or updating one result for todos
-print_r($result);
+table::createTable($result);
