@@ -92,7 +92,29 @@ class model
     
     public function save()
     {
-        
+        if (static::$id == '')
+              {
+
+               $db=DatabaseKra23::getConnection();
+               $array = get_object_vars($this);
+               static::$columnString = implode(', ', $array);
+               static::$valueString = implode(', ',array_fill(0,count($array),'?'));
+               $sql = $this->insert();
+               $stmt=$db->prepare($sql);
+               $stmt->execute(static::$data);
+
+              }
+
+             else
+              {
+
+               $db=DatabaseKra23::getConnection();
+               $array = get_object_vars($this);
+               $sql = $this->update();
+               $stmt=$db->prepare($sql);
+               $stmt->execute();
+               
+              }
     }
     
     private function insert() 
