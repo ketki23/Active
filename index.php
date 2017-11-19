@@ -48,7 +48,7 @@ class collection
 
     static public function findAll() 
     {
-        $db = dbConn::getConnection();
+        $db = DatabaseKra23::getConnection();
         $tableName = get_called_class();
         $sql = 'SELECT * FROM ' . $tableName;
         $statement = $db->prepare($sql);
@@ -62,7 +62,7 @@ class collection
 
     static public function findOne($id) 
     {
-        $db = dbConn::getConnection();
+        $db = DatabaseKra23::getConnection();
         $tableName = get_called_class();
         $sql = 'SELECT * FROM ' . $tableName . ' WHERE id =' . $id;
         $statement = $db->prepare($sql);
@@ -115,20 +115,36 @@ class model
 class account extends model 
 {
 
-
+    public $email = 'email';
+    public $fname = 'fname';
+    public $lname = 'lname';
+    public $phone =  'phone';
+    public $birthday = 'birthday';
+    public $gender= 'gender';
+    public $password = 'password';
+    static $tableName = 'accounts';
+    static $id = '3';
+    static $data = array('riya@kjit.edu','Riya','Ray','1234',NULL,'Female','riyaray');
+    static $updateColumn = 'email';
+    static $update ='ray123@kjit.edu';
 
 }
 
 class todo extends model 
 {
     
-    public $id;
-    public $owneremail;
-    public $ownerid;
-    public $createddate;
-    public $duedate;
-    public $message;
-    public $isdone;
+    public $owneremail = 'owneremail';
+    public $ownerid = 'ownerid';
+    public $createddate = 'createddate';
+    public $duedate = 'duedate';
+    public $message = 'message';
+    public $isdone = 'isdone';
+    static $tableName = 'todos';
+    static $id = '2';
+    static $data = array('xyz@yahoo.com','8','2017-11-18','2017-12-12 03:00:21','incomplete','0');          
+    static $updateColumn = 'isdone';
+    static $update ='1';
+}
 
     public function __construct()
     {
