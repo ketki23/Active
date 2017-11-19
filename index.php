@@ -84,3 +84,29 @@ class todos extends collection
 {
     protected static $modelName = 'todo';
 }
+
+
+class model 
+{
+    protected $tableName;
+    
+    public function save()
+    {
+        
+    }
+    
+    private function insert() 
+    {
+        
+    }
+    
+    private function update() 
+    {
+        
+    }
+    
+    public function delete() 
+    {
+        
+    }
+}
