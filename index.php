@@ -137,3 +137,15 @@ class todo extends model
     }
 
 }
+
+$result = accounts::findAll(); // to put in index page for accounts 
+print_r($result);
+
+$result = todos::findAll(); // to put in index page for todos
+print_r($result);
+
+$result = accounts::findOne(1);// to get one result and is used for showing one result or updating one result for accounts
+print_r($result);
+
+$result = todos::findOne(1);// to get one result and is used for showing one result or updating one result for todos
+print_r($result);
