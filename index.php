@@ -113,23 +113,35 @@ class model
                $sql = $this->update();
                $stmt=$db->prepare($sql);
                $stmt->execute();
-               
+
               }
-    }
-    
-    private function insert() 
-    {
-        
     }
     
     private function update() 
     {
-        
+
+      $db=DatabaseKra23::getConnection();  
+      $sql = "Update ".static::$tableName. " Set ".static::$updateColumn."='".static::$update."' Where id=".static::$id;
+      return $sql;  
+    
     }
     
-    public function delete() 
+    private function delete() 
     {
-        
+
+       $db=DatabaseKra23::getConnection();
+       $sql = 'Delete From '.static::$tableName.' WHERE id='.static::$id;
+       $stmt=$db->prepare($sql);
+       $stmt->execute();
+       echo'Deleting record with ID :'.static::$id; 
+
+    }
+    
+    public function insert() 
+    {
+        $db=DatabaseKra23::getConnection();
+        $sql = "Insert into ".static::$tableName." (". static::$updateColumn . ") values(". static::$valueString . ") ";
+        return $sql;
     }
 }
 
