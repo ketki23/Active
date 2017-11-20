@@ -1,38 +1,5 @@
 <?php
-/*class DatabaseKra23
-{
-// initiation of connection variables
-private $servername = "mysql:dbname=kra23;host=sql1.njit.edu";
-private $username = "kra23";
-private $password = "z4QhaWbRd";
-// end 
-private $databasekra23;// database handler
-private $error;// for errors
-private static $instance;// to maintain single instance and eliminate mutilple connections open
-public function __construct()
-{
-$connect = $this->servername;
-$options= array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC);
-try
-{
- $this->databasekra23 = new PDO($connect, $this->username, $this->password, $options);
-} 
-catch(PDOException $e)
-{
-$this->error= $e->getMessage();
-}
-}
-static function getconnected()
-{
-    if(!self::$instance)
-        {
-            self::$instance = new self();
-        }
-        return self::$instance;
-}
-}
-*/
+
 //turn on debugging messages
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
@@ -67,6 +34,41 @@ class database{
         return self::$databasekra23;
     }
 }
+
+/*class DatabaseKra23
+{
+// initiation of connection variables
+private $servername = "mysql:dbname=kra23;host=sql1.njit.edu";
+private $username = "kra23";
+private $password = "z4QhaWbRd";
+// end 
+private $databasekra23;// database handler
+private $error;// for errors
+private static $instance;// to maintain single instance and eliminate mutilple connections open
+public function __construct()
+{
+$connect = $this->servername;
+$options= array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC);
+try
+{
+ $this->databasekra23 = new PDO($connect, $this->username, $this->password, $options);
+} 
+catch(PDOException $e)
+{
+$this->error= $e->getMessage();
+}
+}
+static function getconnected()
+{
+    if(!self::$instance)
+        {
+            self::$instance = new self();
+        }
+        return self::$instance;
+}
+}
+*/
 class collection
 {
     static public function create()
@@ -137,7 +139,6 @@ class model
                $stmt=$databasekra23->prepare($sql);
                $stmt->execute();
               }
-
            }
 
            private function insert()
@@ -146,6 +147,7 @@ class model
                 $sql = "Insert into ".static::$tableName." (". static::$columnString . ") values(". static::$valueString . ") ";
                 return $sql;
             }
+
            private function update()
             {
                 $databasekra23=database::getConnection();
@@ -198,7 +200,7 @@ class HtmlTable
         static  function displayTable($result)
         {
             echo '<table>';
-            echo "<table cellpadding='10px' border='5px' style='border-solid black' >";
+            echo "<table cellpadding='10px' border='5px' style='border-solid black'>";
             foreach($result as $align)
             {
                 echo '<tr>';
@@ -229,13 +231,13 @@ class HtmlTable
          echo '<hr>';
        
          echo '<h1>Select record from Accounts Table where ID is : 10</h1>';
-         $result= $records->findOne(10);
+         $result = $records->findOne(10);
          HtmlTable::displayTable($result);
          echo '<br>';
          echo '<hr>';
          
          echo '<h1>Select record from Todos Table where ID:3<h1>';
-         $result= $records->findOne(3);
+         $result = $records->findOne(3);
          HtmlTable::displayTable($result);
          echo '<br>';
          echo '<hr>';
@@ -244,7 +246,7 @@ class HtmlTable
          $obj = new account;
          $obj->save();
          $records = accounts::create();
-         $result= $records->findAll();
+         $result = $records->findAll();
          HtmlTable::displayTable($result);
          echo '<br>';
          echo '<hr>';
@@ -280,14 +282,13 @@ class HtmlTable
          $obj = new todo;
          $obj->delete();
          $records = todos::create();
-         $result= $records->findOne(7);
+         $result = $records->findOne(7);
          echo '<hr>';
 
          echo '<h1>Delete record from accounts Table</h1>';
          $obj = new todo;
          $obj->delete();
          $records = todos::create();
-         $result= $records->findOne(5);
+         $result = $records->findOne(5);
          echo '<hr>';
-
 ?>
